@@ -1,0 +1,9 @@
+$UPN = $env:Username + "@wavetronix.com"
+
+Import-Module ExchangeOnlineManagement
+
+Connect-ExchangeOnline -UserPrincipalName $UPN
+
+$Group = Get-DynamicDistributionGroup | Out-GridView -PassThru
+
+Get-Recipient -RecipientPreviewFilter (Get-DynamicDistributionGroup $Group.Name).RecipientFilter | Select-Object Name, PrimarySmtpAddress, Manager | Export-Csv ("$Group.Name" + ".csv") -NoTypeInformation -Encoding UTF8
