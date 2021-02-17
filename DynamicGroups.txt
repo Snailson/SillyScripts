@@ -6,4 +6,4 @@ Connect-ExchangeOnline -UserPrincipalName $UPN
 
 $Group = Get-DynamicDistributionGroup | Out-GridView -PassThru
 
-Get-Recipient -RecipientPreviewFilter (Get-DynamicDistributionGroup $Group.Name).RecipientFilter | Select-Object Name, PrimarySmtpAddress, Manager | Export-Csv ("$Group.Name" + ".csv") -NoTypeInformation -Encoding UTF8
+Get-Recipient -RecipientPreviewFilter (Get-DynamicDistributionGroup $Group.Name).RecipientFilter | Select-Object Name, PrimarySmtpAddress, Manager | Export-Csv ("$Group" + ".csv") -NoTypeInformation -Encoding UTF8
